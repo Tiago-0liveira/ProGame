@@ -67,7 +67,7 @@ static void	*MainMenuScreenInit(void *screenManager)
 		printf("Error: Could not allocate memory for MainMenuScreenData\n");
 		exit(EXIT_FAILURE);
 	}
-	Styles styles = BASE_STYLES;
+	Styles styles = DEFAULT_STYLES;
 	setBorderHover(&styles, styles.hoverStyles.border, styles.styles.borderWidth * 1.5);
 	setCenter(&styles, true);
 

@@ -2,7 +2,7 @@
 
 Text *createText(char *text, Vector2 position, Color color, int fontSize)
 {
-	Styles styles = BASE_STYLES;
+	Styles styles = DEFAULT_STYLES;
 
 	setBackground(&styles, color);
 	setTextSize(&styles, fontSize);

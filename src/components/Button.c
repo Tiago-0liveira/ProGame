@@ -9,7 +9,7 @@ static void defaultOnClick(void *data)
 Button *createButtonSimple(char *text, Vector2 position, void (*onClick)(void *data), void *data)
 {
 	return createButtonEx(text, position, 
-		BUTTON_BASE_SIZE, BASE_STYLES, 
+		BUTTON_BASE_SIZE, DEFAULT_STYLES, 
 		onClick, data
 	);
 }
