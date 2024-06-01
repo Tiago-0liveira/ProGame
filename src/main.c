@@ -8,6 +8,8 @@ int main(void)
 
 	ScreenManager *screenManager = createScreenManager();
 	registerAllScreens(screenManager);
+
+	// Starting screen
 	changeScreen(screenManager, MAIN_MENU_SCREEN);
 
 	while (!WindowShouldClose() && screenManager->keepRunning)
