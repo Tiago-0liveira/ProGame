@@ -25,9 +25,7 @@ Button *createButtonEx(char *text, Vector2 position,
 		exit(EXIT_FAILURE);
 	}
 	button->text = text;
-	button->position = position;
-	button->size = size;
-	button->styles = styles;
+	button->base = createBaseComponent(position, size, styles);
 	button->onClick = onClick ? onClick : defaultOnClick;
 	button->data = data;
 	return (button);

@@ -6,13 +6,12 @@
 #include <stdio.h>
 #include <utilities.h>
 #include <Styles.h>
+#include <BaseComponent.h>
 
 typedef struct s_Text {
+	BaseComponent base;
 	char	*text;
-	Vector2	position;
-	Styles	styles;
 } Text;
-
 
 Text	*createText(char *text, Vector2 position, Color color, int fontSize);
 Text	*createTextEx(char *text, Vector2 position, Styles styles);

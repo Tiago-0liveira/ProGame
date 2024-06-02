@@ -31,7 +31,7 @@ INCLUDE_HEADERS = $(addprefix $(includefolder), \
 		screenManager.h screen.h screens.h \
 	) \
 	$(addprefix $(INCLUDE_COMPONENTS), \
-		Button.h Text.h Styles.h \
+		Button.h Div.h Text.h Styles.h BaseComponent.h \
 	) \
 )
 
@@ -46,7 +46,7 @@ FILES = \
 		) \
 	) \
 	$(addprefix components\\, \
-		Button.c Text.c Styles.c \
+		Button.c Div.c Text.c Styles.c BaseComponent.c \
 	) \
 
 

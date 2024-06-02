@@ -19,20 +19,28 @@ Text *createTextEx(char *text, Vector2 position, Styles styles)
 		exit(EXIT_FAILURE);
 	}
 	pText->text = text;
-	pText->position = position;
-	pText->styles = styles;
-
+	pText->base = createBaseComponent(position, VEC2_NULL, styles);
 	return pText;
+}
+
+Vector2 getTextPosition(Text *text)
+{
+	/* TODO: Needs to take in count the text measure */
+	return text->base.position;
 }
 
 void	drawText(Text *Text)
 {
-	if (Text->styles.styles.center)
+	BaseComponentInfo info = BaseComponentGetInfo(&Text->base);
+	//TODO: Calculate text position
+	//info.position = getTextPosition(Text);
+	DrawText(Text->text, SPREAD_VEC2(info.position), info.styles->textSize, info.styles->textColor);
+	/*if (Text->styles.styles.center)
 		DrawText(Text->text, 
 			GetScreenWidth() / 2 - MeasureText(Text->text, Text->styles.styles.textSize) / 2, 
 			Text->position.y, 
 			Text->styles.styles.textSize, Text->styles.styles.textColor);
 	else
 		DrawText(Text->text, SPREAD_VEC2(Text->position), 
-			Text->styles.styles.textSize, Text->styles.styles.textColor);
+			Text->styles.styles.textSize, Text->styles.styles.textColor);*/
 }
