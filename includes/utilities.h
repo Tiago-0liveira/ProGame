@@ -7,4 +7,6 @@
 #define INL_RECT(x,y,w,h) (Rectangle){x, y, w, h}
 #define INL_RECT_V2(pos, size) (Rectangle){pos.x, pos.y, size.x, size.y}
 
+#define DEFAULT_BOUNDS (Rectangle){0, 0, WIN_WIDTH, WIN_HEIGHT}
+
 #endif // UTILITIES_H
