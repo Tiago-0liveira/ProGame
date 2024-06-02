@@ -33,25 +33,18 @@ Button *createButtonEx(char *text, Vector2 position,
 
 void	drawButton(Button *button)
 {
-	StyleSheet styles = button->styles.styles;
-	if (button->styles.styles.center)
-	{
-		button->position.x = GetScreenWidth() / 2 - button->size.x / 2;
-	}
-	if (CheckCollisionPointRec(GetMousePosition(), INL_RECT_V2(button->position, button->size)))
-	{/* On Hover */
-		styles = button->styles.hoverStyles;
-		if (IsMouseButtonDown(MOUSE_LEFT_BUTTON))
-			styles = button->styles.activeStyles;
-		if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON))/* On Click */
-		{
-			button->onClick(button->data);
-		}
-	}
-	DrawRectangleRoundedLines(INL_RECT_V2(button->position, button->size), 
-		styles.roundRadius, STYLES_BASE_ROUND_SEGMENTS, 
-		styles.borderWidth, styles.border);
-
-	DrawRectangleRounded(INL_RECT_V2(button->position, button->size), styles.roundRadius, STYLES_BASE_ROUND_SEGMENTS, styles.background);
-	DrawText(button->text, button->position.x + button->size.x / 2 - MeasureText(button->text, 20) / 2, button->position.y + button->size.y / 2 - 10, 20, styles.textColor);
+	BaseComponentInfo info = BaseComponentGetInfo(&button->base);
+	if (info.isPressed)
+		button->onClick(button->data);
+	DrawRectangleRoundedLines(INL_RECT_V2(info.position, button->base.size),
+                          info.styles->roundRadius, STYLES_BASE_ROUND_SEGMENTS,
+                          info.styles->borderWidth, info.styles->border);
+	
+	if (!button->base.transparent)
+		DrawRectangleRounded(INL_RECT_V2(info.position, button->base.size), info.styles->roundRadius, STYLES_BASE_ROUND_SEGMENTS, info.styles->background);
+	DrawText(button->text,
+	         info.position.x + button->base.size.x / 2 - (float)MeasureText(button->text, 20) / 2,
+	         info.position.y + button->base.size.y / 2 - 10,
+	         20, info.styles->textColor);
 }
+

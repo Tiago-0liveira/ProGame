@@ -56,9 +56,9 @@ static void	*OptionsScreenInit(void *screenManager)
 	optionsScreenData->screenManager = (ScreenManager *)screenManager;
 
 	optionsScreenData->backButton = createButtonSimple("Back", (Vector2){0, 400}, &BackButtonClick, optionsScreenData);
-	setCenter(&optionsScreenData->backButton->styles, true);
+	setCenter(&optionsScreenData->backButton->base.styles, true);
 	optionsScreenData->title = createText("Options", (Vector2){0, 100}, WHITE, 40);
-	setCenter(&optionsScreenData->title->styles, true);
+	setCenter(&optionsScreenData->title->base.styles, true);
 	
 	return optionsScreenData;
 }

@@ -5,11 +5,10 @@
 #include <screenManager.h>
 #include <Button.h>
 #include <Text.h>
+#include <Div.h>
 
 typedef struct s_MainMenuScreenData {
-	Button			*PlayButton;
-	Button			*OptionsButton;
-	Button			*ExitButton;
+	Div				*buttonsDiv;
 	Text			*title;
 	ScreenManager	*screenManager;
 }	MainMenuScreenData;
@@ -68,16 +67,28 @@ static void	*MainMenuScreenInit(void *screenManager)
 		exit(EXIT_FAILURE);
 	}
 	Styles styles = DEFAULT_STYLES;
-	setBorderHover(&styles, styles.hoverStyles.border, styles.styles.borderWidth * 1.5);
 	setCenter(&styles, true);
+	setBackgroundHover(&styles, styles.styles.background);
+	setBackgroundActive(&styles, styles.styles.background);
 
 	mainMenuScreenData->screenManager = (ScreenManager *)screenManager;
-	mainMenuScreenData->PlayButton = createButtonEx("Play", (Vector2){100, 300}, BUTTON_BASE_SIZE, styles, PlayButtonClick, mainMenuScreenData);
-	mainMenuScreenData->OptionsButton = createButtonEx("Options", (Vector2){100, 400}, BUTTON_BASE_SIZE, styles, OptionsButtonClick, mainMenuScreenData);
-	mainMenuScreenData->ExitButton = createButtonEx("Exit", (Vector2){100, 500}, BUTTON_BASE_SIZE, styles, ExitButtonClick, mainMenuScreenData);
+	Div *buttonsDiv = createDivEx((Vector2){100, 300}, (Vector2){200, 250}, styles);
+	BaseComponentSetTransparent(&buttonsDiv->base, true);
+	
+	Styles buttonStyles = DEFAULT_STYLES;
+	setCenter(&buttonStyles, true);
+	Button *PlayButton = createButtonEx("Play", (Vector2){0, 0}, BUTTON_BASE_SIZE, buttonStyles, PlayButtonClick, mainMenuScreenData);
+	Button *OptionsButton = createButtonEx("Options", (Vector2){0, 100}, BUTTON_BASE_SIZE, buttonStyles, OptionsButtonClick, mainMenuScreenData);
+	Button *ExitButton = createButtonEx("Exit", (Vector2){0, 200}, BUTTON_BASE_SIZE, buttonStyles, ExitButtonClick, mainMenuScreenData);
+	
+	addChild(buttonsDiv, PlayButton, &PlayButton->base, BUTTON);
+	addChild(buttonsDiv, OptionsButton, &OptionsButton->base, BUTTON);
+	addChild(buttonsDiv, ExitButton, &ExitButton->base, BUTTON);
+	
+	mainMenuScreenData->buttonsDiv = buttonsDiv;
 
 	mainMenuScreenData->title = createText("Pro Game", (Vector2){0, 100}, WHITE, 40);
-	setCenter(&mainMenuScreenData->title->styles, true);
+	setCenter(&mainMenuScreenData->title->base.styles, true);
 	
 	return mainMenuScreenData;
 }
@@ -96,18 +107,17 @@ static void	MainMenuScreenDraw(void *data)
 	
 	drawText(mainMenuScreenData->title);
 
-	drawButton(mainMenuScreenData->PlayButton);
+	drawDiv(mainMenuScreenData->buttonsDiv);
+	/*drawButton(mainMenuScreenData->PlayButton);
 	drawButton(mainMenuScreenData->OptionsButton);
-	drawButton(mainMenuScreenData->ExitButton);
+	drawButton(mainMenuScreenData->ExitButton);*/
 }
 
 static void	MainMenuScreenUnload(void *data)
 {
 	MainMenuScreenData *mainMenuScreenData = (MainMenuScreenData *)data;
 	printf("MainMenuScreen Unload\n");
-	free(mainMenuScreenData->PlayButton);
-	free(mainMenuScreenData->OptionsButton);
-	free(mainMenuScreenData->ExitButton);
+	free(mainMenuScreenData->buttonsDiv);
 
 	free(mainMenuScreenData->title);
 
