@@ -6,6 +6,7 @@
 #include <stdio.h>
 #include <utilities.h>
 #include <Styles.h>
+#include <BaseComponent.h>
 
 #define BUTTON_BASE_SIZE INL_VEC2(100, 50)
 
