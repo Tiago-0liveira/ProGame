@@ -71,7 +71,7 @@ $(NAME): $(OBJS)
 	$(CC) $(FLAGS) $(OBJS) -o $(NAME) $(RAYLIB_LIB) $(LINK_FLAGS)
 	$(MSG1)
 
-$(OBJS): $(OBJ_DIR)%.o: $(SRC_FOLDER)%.c $(INCLUDE_HEADERS)
+$(OBJ_DIR)%.o: $(SRC_FOLDER)%.c $(INCLUDE_HEADERS)
 	@if not exist "$(OBJ_DIR)" mkdir "$(OBJ_DIR)"
 	@if not exist "$(dir $@)" mkdir "$(dir $@)"
 	@$(CC) $(FLAGS) -o $@ -c $<
