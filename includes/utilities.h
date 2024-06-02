@@ -1,6 +1,8 @@
 #ifndef UTILITIES_H
 #define UTILITIES_H
 
+#include <raylib.h>
+
 #define VEC2_NULL (Vector2){0, 0}
 #define INL_VEC2(...) (Vector2){__VA_ARGS__}
 #define SPREAD_VEC2(v) v.x, v.y
