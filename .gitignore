@@ -1,4 +1,6 @@
 snake
 obj
 .vscode
+.idea
+.vs
 *.exe
