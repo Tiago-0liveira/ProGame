@@ -51,7 +51,7 @@ typedef struct s_styles
 	Color	textColor;
 
 	Color	border;
-	size_t	borderWidth;
+	float	borderWidth;
 
 	float	roundRadius;
 
