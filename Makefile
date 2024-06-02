@@ -80,11 +80,11 @@ run: all
 	$(NAME)
 
 clean:
-	rmdir /s /q $(OBJ_DIR)
+	@if exist $(OBJ_DIR) rmdir /S /Q $(OBJ_DIR) 2>nul
 	$(MSG2)
 
 fclean: clean
-	@del $(NAME)
+	@if exist $(NAME) del $(NAME) 2>nul
 	$(MSG3)
 
 re: fclean all
