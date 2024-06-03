@@ -23,24 +23,10 @@ Text *createTextEx(char *text, Vector2 position, Styles styles)
 	return pText;
 }
 
-Vector2 getTextPosition(Text *text)
+void	drawText(Text *text)
 {
-	/* TODO: Needs to take in count the text measure */
-	return text->base.position;
-}
-
-void	drawText(Text *Text)
-{
-	BaseComponentInfo info = BaseComponentGetInfo(&Text->base);
-	//TODO: Calculate text position
-	//info.position = getTextPosition(Text);
-	DrawText(Text->text, SPREAD_VEC2(info.position), info.styles->textSize, info.styles->textColor);
-	/*if (Text->styles.styles.center)
-		DrawText(Text->text, 
-			GetScreenWidth() / 2 - MeasureText(Text->text, Text->styles.styles.textSize) / 2, 
-			Text->position.y, 
-			Text->styles.styles.textSize, Text->styles.styles.textColor);
-	else
-		DrawText(Text->text, SPREAD_VEC2(Text->position), 
-			Text->styles.styles.textSize, Text->styles.styles.textColor);*/
+	BaseComponentInfo info = BaseComponentGetInfo(&text->base);
+	
+	text->base.size.x = (float) MeasureText(text->text, (int) info.styles->textSize);
+	DrawText(text->text, SPREAD_VEC2(info.position), (int) info.styles->textSize, info.styles->textColor);
 }
