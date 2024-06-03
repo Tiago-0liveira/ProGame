@@ -1,8 +1,5 @@
 #include <Div.h>
 
-//TODO: remove this include
-#include <BaseComponent.h>
-
 Div		*createDiv(Vector2 position, Vector2 size)
 {
 	return createDivEx(position, size, DEFAULT_STYLES);

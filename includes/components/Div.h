@@ -8,6 +8,7 @@
 
 #include <Text.h>
 #include <Button.h>
+#include <BaseComponent.h>
 
 #define MAX_CHILDREN 10
 
