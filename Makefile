@@ -31,7 +31,7 @@ INCLUDE_HEADERS = $(addprefix $(includefolder), \
 		screenManager.h screen.h screens.h \
 	) \
 	$(addprefix $(INCLUDE_COMPONENTS), \
-		Button.h Div.h Text.h Styles.h BaseComponent.h \
+		Button.h Div.h Text.h Styles.h Slider.h BaseComponent.h \
 	) \
 )
 
@@ -42,27 +42,28 @@ FILES = \
 	$(addprefix screenManager\\, \
 		Screen.c screenManager.c screenRegistry.c \
 		$(addprefix screens\\, \
-			MainMenuScreen.c OptionsScreen.c \
+			MainMenuScreen.c OptionsScreen.c TestScreen.c \
 		) \
 	) \
 	$(addprefix components\\, \
-		Button.c Div.c Text.c Styles.c BaseComponent.c \
+		Button.c Div.c Text.c Slider.c Styles.c BaseComponent.c \
 	) \
 
 
 OBJS = $(addprefix $(OBJ_DIR), $(FILES:%.c=%.o))
 
 # Reset
-Color_Off='[0m'       # Text Reset
+Color_Off=[0m       # Text Reset
 
-IRed='[0;91m'         # Red
-IGreen='[0;92m'       # Green
-IYellow='[0;93m'      # Yellow
-ICyan='[0;96m'        # Cyan
+IRed=[0;91m         # Red
+IGreen=[0;92m       # Green
+IYellow=[0;93m      # Yellow
+ICyan=[0;96m        # Cyan
 
-MSG1 = @echo ${IGreen}"Compiled Successfully ✔︎"${Color_Off}
-MSG2 = @echo ${IYellow}"Cleaned Successfully ✔︎"${Color_Off}
-MSG3 = @echo ${ICyan}"Cleaned ${NAME} Successfully ✔︎"${Color_Off}
+MSG0 = @echo  [$(IYellow)$(NAME)$(Color_Off)] Compiling $(IGreen)$<$(Color_Off)
+MSG1 = @echo ${IGreen}Compiled Successfully ✔${Color_Off}
+MSG2 = @echo ${IYellow}Cleaned Successfully ✔${Color_Off}
+MSG3 = @echo ${ICyan}Cleaned ${NAME} Successfully ✔${Color_Off}
 
 all: $(NAME)
 
@@ -74,6 +75,7 @@ $(NAME): $(OBJS)
 $(OBJ_DIR)%.o: $(SRC_FOLDER)%.c $(INCLUDE_HEADERS)
 	@if not exist "$(OBJ_DIR)" mkdir "$(OBJ_DIR)"
 	@if not exist "$(dir $@)" mkdir "$(dir $@)"
+	$(MSG0)
 	@$(CC) $(FLAGS) -o $@ -c $<
 
 run: all
