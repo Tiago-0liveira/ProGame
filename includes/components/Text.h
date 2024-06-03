@@ -15,6 +15,6 @@ typedef struct s_Text {
 
 Text	*createText(char *text, Vector2 position, Color color, int fontSize);
 Text	*createTextEx(char *text, Vector2 position, Styles styles);
-void	drawText(Text *Text);
+void	drawText(Text *text);
 
 #endif // TEXT_H
