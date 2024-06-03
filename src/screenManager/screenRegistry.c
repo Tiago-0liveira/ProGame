@@ -5,6 +5,7 @@ void	registerAllScreens(ScreenManager *screenManager)
 {
 	registerScreen(screenManager, MAIN_MENU_SCREEN, createMainMenuScreen());
 	registerScreen(screenManager, OPTIONS_SCREEN, createOptionsScreen());
+	registerScreen(screenManager, TEST_SCREEN, createTestScreen());
 	// registerScreen(screenManager, GAMEPLAY_SCREEN, createGameplayScreen());
 }
 

@@ -9,6 +9,7 @@ typedef enum e_ScreenType {
 	MAIN_MENU_SCREEN,
 	OPTIONS_SCREEN,
 	GAMEPLAY_SCREEN,
+	TEST_SCREEN,
 	SCREEN_NUM
 }	ScreenType;
 

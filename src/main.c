@@ -1,6 +1,8 @@
 #include <game.h>
 #include <screenManager.h>
 
+#define DEBUG_TEST_SCREEN
+
 int main(void)
 {
 	InitWindow(WIN_WIDTH, WIN_HEIGHT, GAME_NAME);
@@ -8,10 +10,14 @@ int main(void)
 
 	ScreenManager *screenManager = createScreenManager();
 	registerAllScreens(screenManager);
-
+	
 	// Starting screen
-	changeScreen(screenManager, MAIN_MENU_SCREEN);
-
+	#ifdef DEBUG_TEST_SCREEN
+		changeScreen(screenManager, TEST_SCREEN);
+	#else
+		changeScreen(screenManager, MAIN_MENU_SCREEN);
+	#endif
+	
 	while (!WindowShouldClose() && screenManager->keepRunning)
 	{
 		updateScreen(screenManager);

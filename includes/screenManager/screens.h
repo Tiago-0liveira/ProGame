@@ -5,5 +5,8 @@
 
 Screen *createMainMenuScreen(void);
 Screen *createOptionsScreen(void);
+//Screen *createGameplayScreen(void);
+Screen *createTestScreen(void);
+
 
 #endif // SCREENS_H
